@@ -36,16 +36,27 @@ template <typename Iterator> void SiftDown(Iterator iter, Iterator first, Iterat
 	
 }
 
+template <typename Iterator> void MakeHeap(Iterator first, Iterator last)
+{
+	// we start from container::end() - 1 and finish, when crossed container::begin()
+	last = last - 1;
+	for (Iterator iter = last; iter != first - 1; --iter)
+	{
+		SiftDown(iter, first, last);
+	}
+}
+
 template <typename Iterator> void PopHeap(Iterator first, Iterator last)
 {
 	// we can access last - 1 here, assuming last - 1 != end
 	std::iter_swap(first, last - 1);
 	SiftDown(first, first, last - 2); // pass extra iterator
 }
+
 template <typename Iterator> void HeapSortInplace(Iterator first, Iterator last)
 {
 	Iterator iter = last;
-	std::make_heap(first, last);
+	MakeHeap(first, last);
 	while (first != iter)
 	{
 		PopHeap(first, iter--);
