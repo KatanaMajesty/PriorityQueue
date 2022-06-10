@@ -24,7 +24,7 @@ public:
 	constexpr SizeType LeftChild(SizeType index) const { return (2 * index + 1); }
 	constexpr SizeType RightChild(SizeType index) const { return LeftChild(index) + 1; }
 
-	constexpr SizeType Size() const { return m_Size; }
+	SizeType Size() const { return m_Size; }
 	constexpr bool IsEmpty() const { return Size() == 0; }
 	constexpr bool IsLeaf(SizeType index) const { return LeftChild(index) >= Size(); }
 	constexpr bool IsRoot(SizeType index) const { return index == 0; }

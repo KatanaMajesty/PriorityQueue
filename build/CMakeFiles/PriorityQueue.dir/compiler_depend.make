@@ -229,14 +229,37 @@ CMakeFiles/PriorityQueue.dir/src/Main.cpp.o: ../src/Main.cpp \
   /usr/include/c++/12.1.0/tr1/modified_bessel_func.tcc \
   /usr/include/c++/12.1.0/tr1/poly_hermite.tcc \
   /usr/include/c++/12.1.0/tr1/poly_laguerre.tcc \
-  /usr/include/c++/12.1.0/tr1/riemann_zeta.tcc
+  /usr/include/c++/12.1.0/tr1/riemann_zeta.tcc \
+  /usr/include/c++/12.1.0/algorithm \
+  /usr/include/c++/12.1.0/bits/stl_algo.h \
+  /usr/include/c++/12.1.0/bits/algorithmfwd.h \
+  /usr/include/c++/12.1.0/bits/stl_tempbuf.h \
+  /usr/include/c++/12.1.0/bits/uniform_int_dist.h \
+  /usr/include/c++/12.1.0/bits/ranges_algo.h \
+  /usr/include/c++/12.1.0/bits/ranges_algobase.h \
+  /usr/include/c++/12.1.0/bits/ranges_util.h \
+  /usr/include/c++/12.1.0/pstl/glue_algorithm_defs.h \
+  /usr/include/c++/12.1.0/pstl/execution_defs.h \
+  ../src/Sorting.h
 
+
+../src/Sorting.h:
+
+/usr/include/c++/12.1.0/pstl/execution_defs.h:
+
+/usr/include/c++/12.1.0/bits/ranges_util.h:
+
+/usr/include/c++/12.1.0/bits/ranges_algobase.h:
+
+/usr/include/c++/12.1.0/bits/stl_tempbuf.h:
 
 /usr/include/c++/12.1.0/tr1/modified_bessel_func.tcc:
 
 /usr/include/c++/12.1.0/tr1/legendre_function.tcc:
 
 /usr/include/c++/12.1.0/tr1/hypergeometric.tcc:
+
+/usr/include/c++/12.1.0/pstl/glue_algorithm_defs.h:
 
 /usr/include/c++/12.1.0/tr1/exp_integral.tcc:
 
@@ -318,6 +341,8 @@ CMakeFiles/PriorityQueue.dir/src/Main.cpp.o: ../src/Main.cpp \
 
 /usr/include/alloca.h:
 
+/usr/include/c++/12.1.0/algorithm:
+
 /usr/include/bits/types/sigset_t.h:
 
 /usr/include/bits/select.h:
@@ -351,6 +376,8 @@ CMakeFiles/PriorityQueue.dir/src/Main.cpp.o: ../src/Main.cpp \
 /usr/include/c++/12.1.0/initializer_list:
 
 /usr/include/c++/12.1.0/bits/stl_iterator_base_types.h:
+
+/usr/include/c++/12.1.0/bits/stl_algo.h:
 
 /usr/include/c++/12.1.0/tr1/gamma.tcc:
 
@@ -510,6 +537,8 @@ CMakeFiles/PriorityQueue.dir/src/Main.cpp.o: ../src/Main.cpp \
 
 /usr/include/c++/12.1.0/bits/stl_iterator_base_funcs.h:
 
+/usr/include/c++/12.1.0/bits/algorithmfwd.h:
+
 /usr/include/stdint.h:
 
 /usr/include/wchar.h:
@@ -595,6 +624,8 @@ CMakeFiles/PriorityQueue.dir/src/Main.cpp.o: ../src/Main.cpp \
 /usr/include/pthread.h:
 
 /usr/include/bits/types/time_t.h:
+
+/usr/include/c++/12.1.0/bits/ranges_algo.h:
 
 /usr/include/wctype.h:
 
@@ -685,6 +716,8 @@ CMakeFiles/PriorityQueue.dir/src/Main.cpp.o: ../src/Main.cpp \
 /usr/include/c++/12.1.0/bits/stl_algobase.h:
 
 /usr/include/c++/12.1.0/bits/stl_pair.h:
+
+/usr/include/c++/12.1.0/bits/uniform_int_dist.h:
 
 /usr/include/c++/12.1.0/bits/utility.h:
 

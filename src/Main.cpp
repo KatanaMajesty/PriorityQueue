@@ -1,6 +1,8 @@
 #include <iostream>
 #include <queue>
 #include <PriorityQueue.h>
+#include <algorithm>
+#include <Sorting.h>
 
 template <typename Queue, typename T>
 float testPriorityQueueSpeed(Queue&& priorityQueue)
@@ -12,7 +14,7 @@ float testPriorityQueueSpeed(Queue&& priorityQueue)
 		int insertDataAmount = rand() % 6 + 5;
 		for (int j = 0; j < insertDataAmount; j++)
 		{
-			priorityQueue.push(T());
+			priorityQueue.push(T{static_cast<float>(j)});
 		}
 		auto& a = priorityQueue.top();
 		priorityQueue.pop();
@@ -76,7 +78,6 @@ bool testPriorityQueue()
 
 struct Object
 {
-	// Object() : distance(static_cast<float>(rand())) {}
 	float distance;
 	bool operator<(const Object& other) const { return this->distance < other.distance; }
 	bool operator>(const Object& other) const { return !(*this < other); }
@@ -86,13 +87,30 @@ struct Object
 
 int main()
 {
-	// std::cout << "Hello, World\n";
-	// PriorityQueue<Object> queue;
-
-	// std::cout << queue.Size() << std::endl;
-	// for (Object& o : queue)
-	// {
-	// 	std::cout << o.distance << std::endl;
-	// }
 	testPriorityQueue<Object>();
+
+	// Additional task
+	std::vector<int> vec(20);
+	std::cout << "Size: " << vec.size() << std::endl;
+	std::generate(vec.begin(), vec.end(), []() -> int
+	{
+		return rand() % 123;
+	});
+	for (int& i : vec)
+	{
+		std::cout << i << " ";
+	}
+	std::cout << std::endl;
+	std::make_heap(vec.begin(), vec.end());
+	for (int& i : vec)
+	{
+		std::cout << i << " ";
+	}
+	std::cout << std::endl;
+	HeapSortInplace(vec.begin(), vec.end());
+	for (int& i : vec)
+	{
+		std::cout << i << " ";
+	}
+	std::cout << std::endl;
 }
