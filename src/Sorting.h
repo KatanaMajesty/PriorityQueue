@@ -6,31 +6,34 @@
 template <typename Iterator> void SiftDown(Iterator iter, Iterator first, Iterator last)
 {
 	auto index = std::distance(first, iter);
-
-	// check if leaf -> return if so
 	Iterator leftChild = first + (2 * index + 1);
 	Iterator rightChild = first + (2 * index + 2);
-	if (leftChild > last)
-	{
-		return;
-	}
-
 	Iterator child = leftChild;
-	if (!(rightChild > last))
+	// while is not a leaf
+	while (leftChild <= last)
 	{
-		child = std::max(leftChild, rightChild,
-			[](const Iterator& lhs, const Iterator& rhs) -> bool
-			{
-				return *lhs < *rhs;
-			});
-	}
+		child = leftChild;
+		if (!(rightChild > last))
+		{
+			child = std::max(leftChild, rightChild,
+				[](const Iterator& lhs, const Iterator& rhs) -> bool
+				{
+					return *lhs < *rhs;
+				});
+		}
 
-	if (*iter < *child)
-	{
+		if (*iter > *child)
+		{
+			break;
+		}
 		std::iter_swap(iter, child);
 		iter = child;
-		SiftDown(iter, first, last);
+		
+		index = std::distance(first, iter);
+		leftChild = first + (2 * index + 1);
+		rightChild = first + (2 * index + 2);
 	}
+	
 }
 
 template <typename Iterator> void PopHeap(Iterator first, Iterator last)
@@ -42,11 +45,10 @@ template <typename Iterator> void PopHeap(Iterator first, Iterator last)
 template <typename Iterator> void HeapSortInplace(Iterator first, Iterator last)
 {
 	Iterator iter = last;
+	std::make_heap(first, last);
 	while (first != iter)
 	{
-		PopHeap(first, iter);
-		// std::cout << *last << std::endl;
-		iter--;
+		PopHeap(first, iter--);
 	}
 	std::reverse(first, last);
 }

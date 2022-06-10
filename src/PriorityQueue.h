@@ -21,6 +21,7 @@ public:
 	~PriorityQueue() = default;
 
 	constexpr SizeType Parent(SizeType index) const { return (index - 1) / 2; }
+	// constexpr SizeType Parent(SizeType index) const { return (index - 1) / 2; }
 	constexpr SizeType LeftChild(SizeType index) const { return (2 * index + 1); }
 	constexpr SizeType RightChild(SizeType index) const { return LeftChild(index) + 1; }
 
@@ -39,11 +40,10 @@ public:
 		{
 			return;
 		}
-		SizeType parentIndex = Parent(index);
 
+		SizeType parentIndex = Parent(index);
 		Reference self = m_Container[index];
 		Reference parent = m_Container[parentIndex];
-
 		if (self < parent)
 		{
 			return;
@@ -53,27 +53,44 @@ public:
 		SiftUp(parentIndex);
 	}
 
+	void push(ConstReference& value)
+	{
+		m_Container.push_back(value);
+		m_Size++;
+		SiftUp(Size() - 1);
+	}
+
+	void push(ValueType&& value)
+	{
+		m_Container.push_back(std::move(value));
+		m_Size++;
+		SiftUp(Size() - 1);
+	}
+
 	void SiftDown(SizeType index)
 	{
+		// if true than this node is a leaf
+		// if not, than at least left child exists
 		if (IsLeaf(index))
 		{
 			return;
 		}
-		SizeType leftIndex = LeftChild(index);
-		SizeType rightIndex = leftIndex + 1;
 
-		SizeType childIndex = leftIndex;
-		if (!IsLeaf(rightIndex))
+		// Get left and right children
+		SizeType childIndex = LeftChild(index);
+		// Check if node at rightIndex exists
+		if (!(childIndex + 1 >= Size()))
 		{
-			childIndex = std::min<SizeType>(leftIndex, rightIndex, 
-			[&](const SizeType& a, const SizeType& b) -> bool
-			{
-				return m_Container[a] < m_Container[b];
-			});
+			// ensure if right index is larger than left index
+			childIndex = std::max<SizeType>(childIndex, childIndex + 1, 
+				[&](const SizeType& a, const SizeType& b) -> bool
+				{
+					return m_Container.at(a) < m_Container.at(b);
+				});
 		}
 
-		Reference child = m_Container[childIndex];
-		Reference self = m_Container[index];
+		Reference child = m_Container.at(childIndex);
+		Reference self = m_Container.at(index);
 
 		if (child < self)
 		{
@@ -84,31 +101,19 @@ public:
 		SiftDown(childIndex);
 	}
 
-	void push(ConstReference& value)
-	{
-		m_Container.push_back(value);
-		m_Size++;
-		SiftUp(m_Size - 1);
-		
-	}
-	void push(ValueType&& value)
-	{
-		m_Container.push_back(std::move(value));
-		m_Size++;
-		SiftUp(m_Size - 1);
-	}
 	void pop()
 	{
 		if (this->IsEmpty())
 		{
 			return;
 		}
+		std::swap(m_Container[0], m_Container[Size() - 1]);
 		m_Size--;
-		std::swap(m_Container[0], m_Container[m_Size]);
 		m_Container.erase(m_Container.end() - 1);
 
 		SiftDown(0);
 	}
+
 	Iterator begin() { return m_Container.begin(); }
 	Iterator end() { return m_Container.end(); }
 private:

@@ -179,4 +179,13 @@ CMakeFiles/PriorityQueue.dir/src/Main.cpp.o: \
  /usr/include/c++/12.1.0/bits/ranges_util.h \
  /usr/include/c++/12.1.0/pstl/glue_algorithm_defs.h \
  /usr/include/c++/12.1.0/pstl/execution_defs.h \
- /home/katanamanjaro/Documents/ASD/ASD2_Lab3_Folder/PriorityQueue/./src/Sorting.h
+ /home/katanamanjaro/Documents/ASD/ASD2_Lab3_Folder/PriorityQueue/./src/Sorting.h \
+ /usr/include/c++/12.1.0/chrono /usr/include/c++/12.1.0/bits/chrono.h \
+ /usr/include/c++/12.1.0/ratio /usr/include/c++/12.1.0/ctime \
+ /usr/include/c++/12.1.0/bits/parse_numbers.h \
+ /usr/include/c++/12.1.0/sstream /usr/include/c++/12.1.0/bits/sstream.tcc \
+ /usr/include/c++/12.1.0/random /usr/include/c++/12.1.0/bits/random.h \
+ /usr/include/c++/12.1.0/x86_64-pc-linux-gnu/bits/opt_random.h \
+ /usr/include/c++/12.1.0/bits/random.tcc /usr/include/c++/12.1.0/numeric \
+ /usr/include/c++/12.1.0/bits/stl_numeric.h /usr/include/c++/12.1.0/bit \
+ /usr/include/c++/12.1.0/pstl/glue_numeric_defs.h

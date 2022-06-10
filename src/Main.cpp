@@ -3,6 +3,8 @@
 #include <PriorityQueue.h>
 #include <algorithm>
 #include <Sorting.h>
+#include <chrono>
+#include <random>
 
 template <typename Queue, typename T>
 float testPriorityQueueSpeed(Queue&& priorityQueue)
@@ -15,6 +17,7 @@ float testPriorityQueueSpeed(Queue&& priorityQueue)
 		for (int j = 0; j < insertDataAmount; j++)
 		{
 			priorityQueue.push(T{static_cast<float>(j)});
+			// priorityQueue.push(T());
 		}
 		auto& a = priorityQueue.top();
 		priorityQueue.pop();
@@ -27,22 +30,21 @@ float testPriorityQueueSpeed(Queue&& priorityQueue)
 template <typename T>
 bool testPriorityQueue()
 {
-	srand(time(NULL));
-	const int iters = 2000;
+	srand(time(nullptr));
+	const int iters = 10000;
 	PriorityQueue<T> myPriorQueue;
 	std::priority_queue<T> stlPriorQueue;
 	bool isDataEqual = true;
 	for (int i = 0; i < iters; i++)
 	{
 		int insertDataAmount = rand() % 6 + 5;
-		// std::cout << "Pushing\n";
 		for (int j = 0; j < insertDataAmount; j++)
 		{
-			T randData = T();
+			T randData = T{static_cast<float>((i + 1) * (rand() % 100))};
+			// T randData = T();
 			myPriorQueue.push(randData);
 			stlPriorQueue.push(randData);
 		}
-		// std::cout << "Done pushing\n";
 		if (!(myPriorQueue.top() == stlPriorQueue.top()))
 		{
 			isDataEqual = false;
@@ -56,6 +58,8 @@ bool testPriorityQueue()
 			stlPriorQueue.pop();
 		}
 	}
+	
+	std::cout << std::endl;
 	int myQueueSize = myPriorQueue.Size();
 	int stlQueueSize = stlPriorQueue.size();
 	float stlTime = testPriorityQueueSpeed<std::priority_queue<T>, T>(std::priority_queue<T>());
@@ -90,27 +94,28 @@ int main()
 	testPriorityQueue<Object>();
 
 	// Additional task
-	std::vector<int> vec(20);
+	std::vector<int> vec(1000'000);
 	std::cout << "Size: " << vec.size() << std::endl;
 	std::generate(vec.begin(), vec.end(), []() -> int
 	{
 		return rand() % 123;
 	});
-	for (int& i : vec)
-	{
-		std::cout << i << " ";
-	}
-	std::cout << std::endl;
+
+	std::random_device d;
+	std::mt19937 g(d());
+
 	std::make_heap(vec.begin(), vec.end());
-	for (int& i : vec)
-	{
-		std::cout << i << " ";
-	}
-	std::cout << std::endl;
+	auto start = std::chrono::steady_clock::now();
+	std::sort_heap(vec.begin(), vec.end());
+	auto end = std::chrono::steady_clock::now();
+	std::chrono::duration<float> elapsed = end - start;
+	std::cout << "std::sort took " << elapsed << "\n";
+
+	std::shuffle(vec.begin(), vec.end(), g);
+
+	start = std::chrono::steady_clock::now();
 	HeapSortInplace(vec.begin(), vec.end());
-	for (int& i : vec)
-	{
-		std::cout << i << " ";
-	}
-	std::cout << std::endl;
+	end = std::chrono::steady_clock::now();
+	elapsed = end - start;
+	std::cout << "HeapSortInplace took " << elapsed << "\n";
 }
