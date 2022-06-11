@@ -1,3 +1,0 @@
-/home/katanamanjaro/Documents/ASD/ASD2_Lab3_Folder/PriorityQueue/build/CMakeFiles/PriorityQueue.dir
-/home/katanamanjaro/Documents/ASD/ASD2_Lab3_Folder/PriorityQueue/build/CMakeFiles/edit_cache.dir
-/home/katanamanjaro/Documents/ASD/ASD2_Lab3_Folder/PriorityQueue/build/CMakeFiles/rebuild_cache.dir
